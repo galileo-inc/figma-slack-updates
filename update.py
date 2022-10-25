@@ -50,11 +50,9 @@ def post_message(message:str) -> None:
   SLACK_CHANNEL_ID = environ.get('SLACK_CHANNEL_ID')
   SLACK_API_URL = "https://hooks.slack.com/services/" + SLACK_TEAM_ID + "/" + SLACK_USER_ID + "/" + SLACK_CHANNEL_ID
 
+  # TODO: Try making the message better formatted
   # https://api.slack.com/messaging/composing/layouts#adding-blocks
-  data = {
-    "type": "section",
-    "text": message
-  }
+  data = {"text": message}
   r = requests.post(url = SLACK_API_URL, json = data)
 
 def slack_updates_for_figma_files() -> None:
