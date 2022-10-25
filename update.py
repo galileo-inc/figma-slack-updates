@@ -52,7 +52,6 @@ def post_message(message:str) -> None:
 
   data = { "text": message }
   r = requests.post(url = SLACK_API_URL, json = data)
-  print(message)
 
 def slack_updates_for_figma_files() -> None:
   """Retrieves new updates figma files and posts to a slack channel"""
@@ -68,15 +67,25 @@ def slack_updates_for_figma_files() -> None:
   # The period is so that the message starts in the new line, this is because
   # slack removes new lines at the start of a message
   message = "."
+  number_of_files = len(file_keys)
+  current_file = 0
   for file_key in file_keys:
+    print(f'Retrieving file info {current_file}/{number_of_files}')
+
     file_name = get_figma_file_name(file_key=file_key)
     file_updates = get_figma_file_updates(file_key=file_key)
+
     if file_updates:
       message += f"\n{file_name}"
       for file_update in file_updates:
         message += f"\n • {file_update}"
+      message += "\n"
+
+    current_file +=1
   
   if message:
+    print("\n Sending following message to slack: ")
+    print(message)
     post_message(message)
 
 slack_updates_for_figma_files()
