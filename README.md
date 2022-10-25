@@ -1,6 +1,6 @@
 ![Logo](images/logo.png)
 # Figma Slack updates
-Automatically post updates to a Slack channel each day with the updates from a Figma file's version history. [View example](https://twitter.com/jsngr/status/1208161921687576577)
+Automatically post updates to a Slack channel each day with the updates from one or more Figma files' version history. [View example](https://twitter.com/jsngr/status/1208161921687576577)
 
 - [Setting up](#setting-up)
   - [Heroku](#heroku)
@@ -27,7 +27,7 @@ Automatically post updates to a Slack channel each day with the updates from a F
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/galileo-inc/figma-slack-updates)
 
 2. Give your Heroku app a name
-3. For the **Config Vars** section, proceed to the [Figma](#figma) and [Slack](#slack) sections of the README in order to obtain your `FIGMA_FILE_KEY`, `FIGMA_PERSONAL_ACCESS_TOKEN`, `SLACK_CHANNEL_ID`, `SLACK_TEAM_ID`, `SLACK_USER_ID`
+3. For the **Config Vars** section, proceed to the [Figma](#figma) and [Slack](#slack) sections of the README in order to obtain your `FIGMA_FILE_KEYS`, `FIGMA_PERSONAL_ACCESS_TOKEN`, `SLACK_CHANNEL_ID`, `SLACK_TEAM_ID`, `SLACK_USER_ID`
 3. Click "Deploy app"
 
 #### Setting up your Heroku app
@@ -61,7 +61,18 @@ If there was an issue while running, first make sure to double check that your C
 ![Copy Personal Access Tokens](images/copy-personal-access-token.png)
 
 #### Get your file key
-Visit the Figma file that you'd like to post updates for and copy its `file key`. The file key can be found when you copy the file's link or visit the file on the web: figma.com/file/`file key`/... This is your `FIGMA_FILE_KEY`
+Visit the Figma files that you'd like to post updates for and copy it's `file key`. The file key can be found when you copy the file's link or visit the file on the web: figma.com/file/`file key`/.
+
+Join the file keys together with a comma to get your `FIGMA_FILE_KEYS`.
+e.g. One file key
+File key A = "aaaaa"
+FIGMA_FILE_KEYS = "aaaaa"
+
+e.g. Multiple file keys
+File key A = "aaaaa"
+File key B = "bbbbb"
+FIGMA_FILE_KEYS = "aaaaa,bbbbb"
+
 
 ### Slack
 #### Create a new Slack app

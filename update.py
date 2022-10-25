@@ -80,7 +80,7 @@ def slack_updates_for_figma_files() -> None:
     if file_updates:
       message += f"\n{file_name}"
       for file_update in file_updates:
-        message += f"\n   • {file_update}"
+        message += f"\n{file_update}"
       message += "\n"
 
     current_file +=1
