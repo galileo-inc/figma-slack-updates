@@ -50,7 +50,11 @@ def post_message(message:str) -> None:
   SLACK_CHANNEL_ID = environ.get('SLACK_CHANNEL_ID')
   SLACK_API_URL = "https://hooks.slack.com/services/" + SLACK_TEAM_ID + "/" + SLACK_USER_ID + "/" + SLACK_CHANNEL_ID
 
-  data = { "text": message }
+  # https://api.slack.com/messaging/composing/layouts#adding-blocks
+  data = {
+    "type": "section",
+    "text": message
+  }
   r = requests.post(url = SLACK_API_URL, json = data)
 
 def slack_updates_for_figma_files() -> None:
@@ -68,7 +72,7 @@ def slack_updates_for_figma_files() -> None:
   # slack removes new lines at the start of a message
   message = "."
   number_of_files = len(file_keys)
-  current_file = 0
+  current_file = 1
   for file_key in file_keys:
     print(f'Retrieving file info {current_file}/{number_of_files}')
 
@@ -78,7 +82,7 @@ def slack_updates_for_figma_files() -> None:
     if file_updates:
       message += f"\n{file_name}"
       for file_update in file_updates:
-        message += f"\n • {file_update}"
+        message += f"\n   • {file_update}"
       message += "\n"
 
     current_file +=1
