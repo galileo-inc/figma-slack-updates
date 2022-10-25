@@ -75,8 +75,6 @@ def slack_updates_for_figma_files() -> None:
         message += f"\n * {file_update}"
   
   if message:
-    # Attach date to message
-    todays_date = datetime.datetime.today().strftime('%Y-%m-%d')
-    post_message(f"[{todays_date}]{message}")
+    post_message(message)
 
 slack_updates_for_figma_files()
