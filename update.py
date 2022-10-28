@@ -66,9 +66,6 @@ def slack_updates_for_figma_files() -> None:
   if FIGMA_FILE_KEY:
     file_keys = [FIGMA_FILE_KEY]
 
-  # The period is so that the message starts in the new line, this is because
-  # slack removes new lines at the start of a message
-  message = "."
   number_of_files = len(file_keys)
   current_file = 1
   for file_key in file_keys:
@@ -87,6 +84,9 @@ def slack_updates_for_figma_files() -> None:
   
   if message:
     print("\n Sending following message to slack: ")
+    # The period is so that the message starts in the new line, this is because
+    # slack removes new lines at the start of a message
+    message = "." + message
     print(message)
     post_message(message)
 
