@@ -66,6 +66,7 @@ def slack_updates_for_figma_files() -> None:
   if FIGMA_FILE_KEY:
     file_keys = [FIGMA_FILE_KEY]
 
+  message = ""
   number_of_files = len(file_keys)
   current_file = 1
   for file_key in file_keys:
