@@ -1,4 +1,3 @@
-import string
 import requests
 import maya
 import datetime
@@ -46,7 +45,6 @@ def post_message(message:str) -> None:
   """Post message to slack"""
 
   DEBUG_MODE = environ.get('DEBUG_MODE', "0")
-  print(type(DEBUG_MODE))
   if DEBUG_MODE != "0":
     return
 
@@ -96,5 +94,3 @@ def slack_updates_for_figma_files() -> None:
     message = "." + message
     print(message)
     post_message(message)
-
-slack_updates_for_figma_files()
